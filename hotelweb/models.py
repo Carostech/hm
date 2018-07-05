@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 # course categories.
@@ -10,7 +11,7 @@ class Users(models.Model):
     id_number = models.CharField(max_length=50, null=False)
     gender = models.CharField(max_length=10, null=False)
     has_baby = models.CharField(max_length=10, null=False)
-    created_on = models.DateTimeField(default=timezone.now)
+    created_on = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
         return self.user_id
