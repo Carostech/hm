@@ -15,4 +15,16 @@ class Users(models.Model):
     def __str__(self):
         return self.user_id
 
+class Rooms(models.Model):
+    room_id = models.AutoField(primary_key=True)
+    room_number = models.CharField(max_length = 20, null=False)
+    room_type = models.CharField(max_length = 50, null=False)
+    floor = models.CharField(max_length=10, null=False)
+    cleaning_status = models.CharField(max_length=10, null = False)
+
+    def __str__(self):
+        return self.room_id
+
+
+
 
