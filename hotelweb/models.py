@@ -140,7 +140,7 @@ class Booking(models.Model):
     status = models.CharField(max_length=50, null=False)
     confirmation_number = models.CharField(max_length=100, null=False)
     package_id = models.CharField(max_length=100, null=False)
-    booking_date=models.CharField(max_length=100,null=False)
+    booking_date = models.CharField(max_length=100, null=False)
     created_on = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
@@ -391,7 +391,49 @@ class FacilityType(models.Model):
 
 
 # Views definitions
-class ArrivalsView(models.Model):
+class ArrivalView(models.Model):
     class Meta:
         managed = False
         db_table = 'ArrivalsView'
+
+
+class DepartureView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'DeparturesView'
+
+
+class BookingSummaryView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'BookingSummaryView'
+
+
+class TodayBookingView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'TodayBookingView'
+
+
+class CancellationView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'CancellationView'
+
+
+class OverBookingView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'OverBookingsView'
+
+
+class RoomsOccupiedView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'RoomsOccupiedView'
+
+
+class InhouseGuestView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'InhouseGuestsView'

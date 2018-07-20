@@ -1,0 +1,19 @@
+{% block js %}
+    {% load staticfiles %}
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script>
+        {# Example parameters we're passing to the js function #}
+        var params = {
+            data: 'data',
+            phone: $('#phone').val().trim(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            id_number: {{ id_number }}
+        };
+
+        add_booking('{% url 'add_booking_ajax' %}', params);
+        delete_booking('{% url 'delete_booking_ajax' %}', params);
+    </script>
+{% endblock %}
+
+
+
