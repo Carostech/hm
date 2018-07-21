@@ -193,3 +193,29 @@ CREATE VIEW InhouseGuestsView AS
 		id_number AS id_number,
 		created_on AS created_on
 	FROM hotelweb_guests;
+  
+-- Tracking trends most used facilities
+CREATE VIEW MostUsedFacilityView AS
+	SELECT 
+		COUNT(utm.tracking_id) AS usage_count,
+        utm.facility_id AS  facility_id,
+        hf.facility_name AS facility
+	FROM
+		hotelweb_usertrackingmovements AS utm
+  LEFT JOIN hotelweb_facilities AS hf
+		ON utm.facility_id=hf.facility_id
+  ORDER BY usage_count DESC
+  LIMIT 3;
+
+-- Tracking trends least used facilities
+CREATE VIEW LeastUsedFacilityView AS
+	SELECT
+		COUNT(utm.tracking_id) AS usage_count,
+        utm.facility_id AS  facility_id,
+        hf.facility_name AS facility
+	FROM
+		hotelweb_usertrackingmovements AS utm
+  LEFT JOIN hotelweb_facilities AS hf
+		ON utm.facility_id=hf.facility_id
+  ORDER BY usage_count ASC
+  LIMIT 3;

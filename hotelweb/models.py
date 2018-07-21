@@ -61,6 +61,7 @@ class Cleaning(models.Model):
 class Facilities(models.Model):
     facility_id = models.AutoField(primary_key=True)
     facility_number = models.CharField(max_length=50, null=False)
+    facility_name = models.CharField(max_length=50, null=False)
     floor = models.CharField(max_length=50, null=False)
     facility_type = models.CharField(max_length=50, null=False)
     location = models.CharField(max_length=50, null=False)
@@ -299,6 +300,7 @@ class UserTrackingMovements(models.Model):
     location = models.CharField(max_length=100, null=False)
     facility_id = models.CharField(max_length=100, null=False)
     facility_type = models.CharField(max_length=100, null=False)
+    status = models.CharField(max_length=100, null=False)
     created_on = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
@@ -437,3 +439,15 @@ class InhouseGuestView(models.Model):
     class Meta:
         managed = False
         db_table = 'InhouseGuestsView'
+
+
+class MostUsedFacilityView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'MostUsedFacilityView'
+
+
+class LeastUsedFacilityView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'LeastUsedFacilityView'
