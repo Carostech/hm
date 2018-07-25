@@ -1,0 +1,37 @@
+<h1>Workers</h1>
+
+<table border="1">
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>ID Number</th>
+        <th>Gender</th>
+        <th>Staff ID</th>
+        <th>Role</th>
+        <th>Shift</th>
+        <th>Created On</th>
+    </tr>
+</thead>
+<tbody>
+    {% for worker in object_list %}
+    <tr>
+        <td>{{ worker.name }}</td>
+        <td>{{ worker.phone }}</td>
+        <td>{{ worker.email }}</td>
+        <td>{{ worker.id_number }}</td>
+        <td>{{ worker.gender }}</td>
+        <td>{{ worker.staff_id }}</td>
+        <td>{{ worker.role }}</td>
+        <td>{{ worker.shift }}</td>
+        <td>{{ worker.created_on }}</td>
+        <td><a href="{% url "worker_details" worker.worker_id %}">view</a></td>
+        <td><a href="{% url "worker_edit" worker.worker_id %}">edit</a></td>
+        <td><a href="{% url "worker_delete" worker.worker_id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<a href="{% url "worker_new" %}">New</a>
