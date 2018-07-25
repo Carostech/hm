@@ -1,0 +1,24 @@
+{% block js %}
+    {% load staticfiles %}
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script>
+        {# Example parameters we're passing to the js functions #}
+        var params = {
+            data: 'data',
+            phone: $('#phone').val().trim(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            id_number: {{ id_number }}
+        };
+
+        addBooking('{% url 'add_booking_ajax' %}', params);
+        updateBooking('{% url 'add_booking_ajax' %}', params);
+        deleteBooking('{% url 'delete_booking_ajax' %}', params);
+        trackingCheckIn('{% url 'tracking_check_in_ajax' %}', params);
+        trackingCheckOut('{% url 'tracking_check_out_ajax' %}', params);
+
+
+    </script>
+{% endblock %}
+
+
+
