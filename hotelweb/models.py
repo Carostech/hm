@@ -277,6 +277,7 @@ class Orders(models.Model):
     order_time = models.DateTimeField(default=timezone.now())
     order_status = models.IntegerField(max_length=2, null=False)
     paid = models.IntegerField(max_length=2, null=False)
+    created_by = models.IntegerField(max_length=2, null=False, default=0)
     created_on = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
@@ -337,6 +338,12 @@ class Laundry(models.Model):
 
     def __str__(self):
         return self.laundry_id
+
+
+class LaundryItems(models.Model):
+    laundry_item_id = models.AutoField(primary_key=True)
+    cloth_type = models.CharField(max_length=100, null=False)
+    cloth_quantity = models.IntegerField(null=False)
 
 
 class LaundryType(models.Model):
@@ -451,3 +458,21 @@ class LeastUsedFacilityView(models.Model):
     class Meta:
         managed = False
         db_table = 'LeastUsedFacilityView'
+
+
+class AllOrdersListView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'AllOrdersListView'
+
+
+class CleaningFacilityView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'CleaningFacilityView'
+
+
+class CleaningRoomView(models.Model):
+    class Meta:
+        managed = False
+        db_table = 'cleaningRoomView'

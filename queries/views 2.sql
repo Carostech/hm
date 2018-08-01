@@ -219,10 +219,11 @@ CREATE VIEW LeastUsedFacilityView AS
 		ON utm.facility_id=hf.facility_id
   ORDER BY usage_count ASC
   LIMIT 3;
-
-    -- Cleaning room list view
+  
+  
+  -- Cleaning room list view
   CREATE VIEW cleaningRoomView AS
-	SELECT
+	SELECT 
 		hc.facility_id AS facility_id,
     hc.facility_type AS  facility_type_id,
     hr.room_number AS room_number,
@@ -231,16 +232,16 @@ CREATE VIEW LeastUsedFacilityView AS
     hw.name AS worker_name,
     hc.created_by AS created_by,
     hc.created_on AS created_on
-	FROM
+	FROM 
 		hotelweb_cleaning AS hc
     INNER JOIN hotelweb_workers AS hw
 			ON hc.worker_id=hw.worker_id
 		INNER JOIN hotelweb_rooms AS hr
 			ON hr.room_id=hc.facility_id;
-
+            
 -- Cleaning facility list view
   CREATE VIEW cleaningFacilityView AS
-	SELECT
+	SELECT 
 		hc.facility_id AS facility_id,
     hc.facility_type AS  facility_type_id,
     hf.facility_number AS facility_number,
@@ -249,7 +250,7 @@ CREATE VIEW LeastUsedFacilityView AS
     hw.name AS worker_name,
     hc.created_by AS created_by,
     hc.created_on AS created_on
-	FROM
+	FROM 
 		hotelweb_cleaning AS hc
     INNER JOIN hotelweb_workers AS hw
 			ON hc.worker_id=hw.worker_id
@@ -276,5 +277,4 @@ CREATE VIEW LeastUsedFacilityView AS
 	  ON ho.created_by= hu.user_id
 	INNER JOIN hotelweb_menu AS hm
 	  ON ho.menu_id AS hm.menu_id
-
-
+        
