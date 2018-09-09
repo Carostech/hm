@@ -1096,6 +1096,10 @@ def user_login(request):
     return render(request, 'hotelweb/authentication/login.html')
 
 
+def user_register(request):
+    return render(request, 'hotelweb/authentication/register.html')
+
+
 
 
 

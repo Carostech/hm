@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hotel Name - Tagline</title>
+    <link href="{% static 'hotelweb/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hotelweb/vendor/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
+    <link href="{% static 'hotelweb/dist/css/sb-admin-2.css' %}" rel="stylesheet">
+    <link href="{% static 'hotelweb/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'hotelweb/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'hotelweb/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'hotelweb/vendor/metisMenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'hotelweb/dist/js/sb-admin-2.js' %}"></script>
+
+</body>
+
+</html>
