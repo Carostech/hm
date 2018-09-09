@@ -1092,6 +1092,10 @@ def delete_facility_cleaning_ajax(request, **kwargs):
             return http.HttpResponse(status=400, content='An error occurred while processing your request')
 
 
+def user_login(request):
+    return render(request, 'hotelweb/authentication/login.html')
+
+
 
 
 

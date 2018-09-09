@@ -22,4 +22,6 @@ urlpatterns = [
     re_path(r'^', include('hotelapi.urls')),
     re_path(r'^api/', include('hotelapi.urls')),
     path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('hotelweb.urls')),
+    path('', include('hotelmngt.urls')),
 ]
