@@ -24,6 +24,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
+    def publish_user(self):
+        self.created_on = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.email
+
 
 class Users(models.Model):
     user_id = models.AutoField(primary_key=True)

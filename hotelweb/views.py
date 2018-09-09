@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from django.utils import timezone
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.views import generic
+
+from hotelweb.forms import CreateUserForm
 from hotelweb.models import Users, Rooms, Workers, Cleaning, Facilities, Vehicles, Ratings, Parking, Events, Chats, \
     Booking, Requests, UserType, RequestType, Alerts, AlertType, Food, Drink, Commodity, Suppliers, Supplies, Menu, \
     Orders, OrderItem, UserTrackingMovements, Hotel, ArrivalView, DepartureView, CancellationView, TodayBookingView, \
@@ -1097,7 +1102,17 @@ def user_login(request):
 
 
 def user_register(request):
-    return render(request, 'hotelweb/authentication/register.html')
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.created_on = timezone.now()
+            user.save()
+            messages.success(request, 'Registered successfully')
+            return redirect('user_register')
+    else:
+        form = CreateUserForm()
+    return render(request, 'hotelweb/authentication/register.html', {'form': form})
 
 
 
