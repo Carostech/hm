@@ -1,9 +1,30 @@
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils import timezone
 
+from hotelweb.managers import UserManager
 
-# Create your models here.
-# course categories.
+
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(null=False, unique=True)
+    first_name = models.CharField(max_length=50, null=False)
+    last_name = models.CharField(max_length=50, null=False)
+    phone = models.CharField(max_length=50, null=False)
+    created_on = models.DateTimeField(null=False, default=timezone.now)
+    job_title = models.CharField(null=False, max_length=100)
+    is_active = models.BooleanField(null=False, default=True)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def get_full_name(self):
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+
 class Users(models.Model):
     user_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=False)
