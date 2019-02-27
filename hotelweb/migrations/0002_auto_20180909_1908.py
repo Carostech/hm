@@ -203,7 +203,7 @@ class Migration(migrations.Migration):
             field=models.DateTimeField(default=datetime.datetime(2018, 9, 9, 19, 8, 24, 833958, tzinfo=utc)),
         ),
         migrations.AlterField(
-            model_name='workers',
+            model_name='staff',
             name='created_on',
             field=models.DateTimeField(default=datetime.datetime(2018, 9, 9, 19, 8, 24, 830962, tzinfo=utc)),
         ),

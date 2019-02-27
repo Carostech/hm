@@ -21,7 +21,6 @@ from hotelapi import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'rooms', views.RoomsViewSet)
-router.register(r'workers', views.WorkersViewSet)
 router.register(r'cleaning', views.CleaningViewSet)
 router.register(r'facilities', views.FacilitiesViewSet)
 router.register(r'vehicles', views.VehiclesViewSet)

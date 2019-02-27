@@ -597,7 +597,7 @@ def delete_supplier_ajax(request, **kwargs):
             return http.HttpResponse(status=400, content='An error occurred while processing your request')
 
 
-# Creating  a new worker
+# Creating  a new staff
 def add_worker_ajax(request, **kwargs):
     if request.method == 'POST':
         if request.is_ajax():
@@ -626,7 +626,7 @@ def add_worker_ajax(request, **kwargs):
                 return http.HttpResponse(status=400, content="A problem occurred. commodity not created")
 
 
-# List all workers
+# List all staff
 class AllWorkersListView(generic.ListView):
     template_name = ''
     context_object_name = 'all_workers_list'
@@ -636,7 +636,7 @@ class AllWorkersListView(generic.ListView):
         return AllWorkersListView.objects.all()
 
 
-# updating workers
+# updating staff
 def update_worker_ajax(request, **kwargs):
     if request.method == 'POST' and request.is_ajax():
         try:
@@ -649,7 +649,7 @@ def update_worker_ajax(request, **kwargs):
     return http.HttpResponse(status=400)
 
 
-# deleting a worker
+# deleting a staff
 def delete_worker_ajax(request, **kwargs):
     if request.method == 'POST' and request.is_ajax():
         try:
@@ -657,7 +657,7 @@ def delete_worker_ajax(request, **kwargs):
             worker_id = worker.worker_id
             worker.delete()
             return http.HttpResponse(
-                content='worker <strong>{}</strong> has been successfully deleted'.format(worker_id), status=200)
+                content='staff <strong>{}</strong> has been successfully deleted'.format(worker_id), status=200)
         except DatabaseError as e:
             return http.HttpResponse(status=400, content='An error occurred while processing your request')
 
