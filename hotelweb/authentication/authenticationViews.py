@@ -4,22 +4,22 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 
-from hotelweb.authentication.authenticationForms import CreateUserForm, LoginForm
+from hotelweb.authentication.authenticationForms import LoginForm
 from hotelweb.models import User
 
 
-def user_register(request):
-    if request.method == "POST":
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.created_on = timezone.now()
-            user.save()
-            messages.success(request, 'Registered successfully')
-            return redirect('user_register')
-    else:
-        form = CreateUserForm()
-    return render(request, 'hotelweb/authentication/register.html', {'form': form})
+#def user_register(request):
+ #   if request.method == "POST":
+  #      form = CreateUserForm(request.POST)
+   #     if form.is_valid():
+    #        user = form.save(commit=False)
+     #       user.created_on = timezone.now()
+      #      user.save()
+       #     messages.success(request, 'Registered successfully')
+        #    return redirect('user_register')
+    #else:
+     #   form = CreateUserForm()
+    #return render(request, 'hotelweb/authentication/register.html', {'form': form})
 
 
 def user_login(request):

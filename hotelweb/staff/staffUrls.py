@@ -5,5 +5,5 @@ from django.urls import path
 from . import staffViews
 
 urlpatterns = [
-    path('staff/add/', staffViews.add_staff, name='add_staff'),
+    # path('staff/add/', staffViews.add_staff, name='add_staff'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
