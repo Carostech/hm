@@ -135,3 +135,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+HASHID_FIELD_SALT = 's%07p3x4yb7)kfj*563*ro0zs5@d%@!d0)=&%q+hotel%&mangtsp*7etals'

@@ -2,6 +2,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from hashid_field import HashidAutoField
 
 from hotelweb.managers import UserManager
 
@@ -40,6 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class JobTitle(models.Model):
+    id = HashidAutoField(primary_key=True)
     job_title = models.CharField(max_length=100, null=False)
     job_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     job_created_on = models.DateTimeField(default=timezone.now)
