@@ -51,6 +51,29 @@ def job_title_details(request, job_title_id):
     return render(request, 'hotelweb/staff/job_title_details.html', context)
 
 
+@login_required
+def update_job_title(request, job_title_id):
+    job_title = JobTitle.objects.get(id=job_title_id)
+
+    if request.method == "POST":
+        form = JobTitleForm(request.POST, instance=job_title)
+
+        if form.is_valid():
+            job_title = form.save()
+            messages.success(request, 'Job title was updated successfully')
+            return redirect('update_job_title', job_title_id=job_title_id)
+
+    else:
+        form = JobTitleForm(instance=job_title)
+
+    context = {
+        'job_title': job_title,
+        'form': form
+    }
+
+    return render(request, 'hotelweb/staff/update_job_title.html', context)
+
+
 #def add_staff(request):
  #   if request.method == "POST":
   #      form = StaffForm(request.POST)
