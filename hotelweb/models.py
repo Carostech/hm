@@ -43,6 +43,7 @@ class JobTitle(models.Model):
     job_title = models.CharField(max_length=100, null=False)
     job_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     job_created_on = models.DateTimeField(default=timezone.now)
+    job_title_status = models.IntegerField(default=1)
 
     def __str__(self):
         return self.job_title
@@ -54,9 +55,10 @@ class JobShift(models.Model):
     shift_end_time = models.TimeField(null=False)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(default=timezone.now, null=False)
+    job_shift_status = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.shift
+        return self.job_shift
 
 
 class Staff(models.Model):

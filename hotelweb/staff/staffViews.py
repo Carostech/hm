@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib import messages
 
 from .staffForms import JobTitleForm, StaffForm
+from hotelweb.models import JobTitle
 
 
 def add_job_title(request):
@@ -23,6 +24,15 @@ def add_job_title(request):
     }
 
     return render(request, 'hotelweb/staff/add_job_title.html', context)
+
+
+def all_job_title(request):
+    job_titles = JobTitle.objects.filter(job_title_status=1)
+
+    context = {
+        'job_titles': job_titles
+    }
+    return render(request, 'hotelweb/staff/all_job_titles.html', context)
 
 
 #def add_staff(request):
