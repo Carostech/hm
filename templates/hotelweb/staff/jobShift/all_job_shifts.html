@@ -4,7 +4,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">All Job Titles</h1>
+                <h1 class="page-header">All Job Shifts</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -24,26 +24,28 @@
                             <table width="100%" class="table dataTable table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Job Title</th>
-                                    <th>Created By</th>
+                                    <th>Job Shift</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
                                     <th>Created On</th>
-                                    <th></th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for job_title in job_titles %}
+                                {% for shift in job_shifts %}
                                     <tr class="odd gradeX">
-                                        <td>{{ job_title.job_title }}</td>
-                                        <td>{{ job_title.job_created_by }}</td>
-                                        <td>{{ job_title.job_created_on|date }}</td>
+                                        <td>{{ shift.job_shift }}</td>
+                                        <td>{{ shift.shift_start_time }}</td>
+                                        <td>{{ shift.shift_end_time }}</td>
+                                        <td>{{ shift.created_on|date }}</td>
                                         <td class="center action-icons">
-                                            <a href="{% url 'job_title_details' job_title.id %}">
+                                            <a href="">
                                                 <i class="fa fa-eye text-info"></i>
                                             </a>
-                                            <a href="{% url 'update_job_title' job_title.id %}">
+                                            <a href="">
                                                 <i class="fa fa-pencil text-success"></i>
                                             </a>
-                                            <a href="{% url 'deactivate_job_title' job_title.id %}">
+                                            <a href="">
                                                 <i class="fa fa-trash text-danger"></i>
                                             </a>
                                         </td>

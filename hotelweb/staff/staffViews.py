@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 
-from .staffForms import JobTitleForm, StaffForm
-from hotelweb.models import JobTitle, Staff
+from .staffForms import JobTitleForm, JobShiftForm, StaffForm
+from hotelweb.models import JobTitle, JobShift, Staff
 
 
 @login_required
@@ -81,6 +81,17 @@ def deactivate_job_title(request, job_title_id):
     job_title.save(update_fields=['job_title_status'])
     messages.add_message(request, messages.SUCCESS, 'Job title removed successfully')
     return redirect('all_job_titles')
+
+
+@login_required
+def all_job_shifts(request):
+    job_shifts = JobShift.objects.filter(job_shift_status=1)
+
+    context = {
+        'job_shifts': job_shifts
+    }
+
+    return render(request, 'hotelweb/staff/jobShift/all_job_shifts.html', context)
 
 
 #def add_staff(request):
