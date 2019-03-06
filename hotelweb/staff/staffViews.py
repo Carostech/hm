@@ -25,7 +25,7 @@ def add_job_title(request):
         'form': form
     }
 
-    return render(request, 'hotelweb/staff/add_job_title.html', context)
+    return render(request, 'hotelweb/staff/jobTitle/add_job_title.html', context)
 
 
 @login_required
@@ -35,7 +35,7 @@ def all_job_title(request):
     context = {
         'job_titles': job_titles
     }
-    return render(request, 'hotelweb/staff/all_job_titles.html', context)
+    return render(request, 'hotelweb/staff/jobTitle/all_job_titles.html', context)
 
 
 @login_required
@@ -48,7 +48,7 @@ def job_title_details(request, job_title_id):
         'staff': staff
     }
 
-    return render(request, 'hotelweb/staff/job_title_details.html', context)
+    return render(request, 'hotelweb/staff/jobTitle/job_title_details.html', context)
 
 
 @login_required
@@ -71,7 +71,16 @@ def update_job_title(request, job_title_id):
         'form': form
     }
 
-    return render(request, 'hotelweb/staff/update_job_title.html', context)
+    return render(request, 'hotelweb/staff/jobTitle/update_job_title.html', context)
+
+
+@login_required
+def deactivate_job_title(request, job_title_id):
+    job_title = JobTitle.objects.get(id=job_title_id)
+    job_title.job_title_status = 0
+    job_title.save(update_fields=['job_title_status'])
+    messages.add_message(request, messages.SUCCESS, 'Job title removed successfully')
+    return redirect('all_job_titles')
 
 
 #def add_staff(request):
