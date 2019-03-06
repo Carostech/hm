@@ -25,4 +25,4 @@ class UserForm(UserCreationForm):
 class StaffForm(forms.ModelForm):
   class Meta:
     model = Staff
-    fields = ('staff_id', 'staff_job_title', 'staff_job_shift')
+    fields = ('staff_id', 'staff_job_title', 'staff_job_shift', 'is_hr')

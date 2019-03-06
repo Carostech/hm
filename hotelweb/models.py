@@ -68,6 +68,7 @@ class Staff(models.Model):
     staff_id = models.CharField(null=False, max_length=100)
     staff_job_title = models.ForeignKey(JobTitle, on_delete=models.CASCADE)
     staff_job_shift = models.ForeignKey(JobShift, on_delete=models.CASCADE)
+    is_hr = models.BooleanField(null=False, default=False)
     staff_created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='staff_created_by')
 
 

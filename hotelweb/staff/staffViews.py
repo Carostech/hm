@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 
-from .staffForms import JobTitleForm, JobShiftForm, StaffForm
+from .staffForms import JobTitleForm, JobShiftForm, UserForm, StaffForm
 from hotelweb.models import JobTitle, JobShift, Staff
 
 
@@ -84,6 +84,27 @@ def deactivate_job_title(request, job_title_id):
 
 
 @login_required
+def add_job_shift(request):
+    if request.method == "POST":
+        form = JobShiftForm(request.POST)
+        if form.is_valid():
+            job_shift = form.save(commit=False)
+            job_shift.created_by = request.user
+            job_shift.save()
+            messages.success(request, 'Job shift was added successfully')
+            return redirect('add_job_shift')
+
+    else:
+        form = JobShiftForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'hotelweb/staff/jobShift/add_job_shift.html', context)
+
+
+@login_required
 def all_job_shifts(request):
     job_shifts = JobShift.objects.filter(job_shift_status=1)
 
@@ -92,6 +113,41 @@ def all_job_shifts(request):
     }
 
     return render(request, 'hotelweb/staff/jobShift/all_job_shifts.html', context)
+
+
+@login_required
+def add_staff(request):
+    if request.method == "POST":
+        user_form = UserForm(request.POST)
+        staff_form = StaffForm(request.POST)
+
+        if user_form.is_valid() and staff_form.is_valid():
+            # Save general user details
+            user = user_form.save(commit=False)
+            user.is_staff = True
+            user.save()
+
+            # Save staff specific details
+            staff = staff_form.save(commit=False)
+            staff.staff_user = user
+            staff.staff_created_by = request.user
+
+            # Success message
+            messages.success(request, 'The staff has been successfully created')
+            return redirect('add_staff')
+
+    else:
+        user_form = UserForm()
+        staff_form = StaffForm()
+
+    context = {
+        'user_form': user_form,
+        'staff_form': staff_form
+    }
+
+    return render(request, 'hotelweb/staff/add_staff.html', context)
+
+
 
 
 #def add_staff(request):

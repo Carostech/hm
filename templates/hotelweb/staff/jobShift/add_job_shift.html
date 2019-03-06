@@ -1,0 +1,71 @@
+{% extends 'hotelweb/base/main_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Add Job Shift</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-file fa-fw"></i> Fill the form
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <form role="form" method="POST" action="{% url 'add_job_shift' %}">
+                            {% csrf_token %}
+                            {% if messages %}
+                                <div class="alert alert-success alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                </div>
+                             {% endif %}
+                            <div class="form-group col-md-8">
+                                <label>Job Shift</label>
+                                {% render_field form.job_shift class="form-control" placeholder="Enter job shift name" %}
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label>Start Time</label>
+                                <div class="input-group date timepicker">
+                                    {% render_field form.shift_start_time class="form-control" placeholder="Pick start time" %}
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-time fa fa-clock-o"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label>End Time</label>
+                                <div class="input-group date timepicker">
+                                    {% render_field form.shift_end_time class="form-control" placeholder="Pick end time" %}
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-time fa fa-clock-o"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button type="submit" class="btn btn-primary">
+                                    Save Details
+                                </button>
+                                <button type="reset" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock %}

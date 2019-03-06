@@ -4,7 +4,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
+                <h1 class="page-header">Add Staff</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -26,45 +26,56 @@
                          {% endif %}
                         <form role="form" method="POST" action="{% url 'add_staff' %}">
                             {% csrf_token %}
-                            <div class="form-group col-md-6">
-                                <label>Full Name</label>
-                                {% render_field form.name class="form-control" placeholder="Enter Full Name" %}
+                            <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                        <label>First Name</label>
+                                        {% render_field user_form.first_name class="form-control" placeholder="Enter First Name" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Last Name</label>
+                                        {% render_field user_form.last_name class="form-control" placeholder="Enter Last Name" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Email Address</label>
+                                        {% render_field user_form.email class="form-control" placeholder="Enter Email Address" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Phone Number</label>
+                                        {% render_field user_form.phone class="form-control" placeholder="Enter Phone Number" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>National ID</label>
+                                        {% render_field user_form.id_number class="form-control" placeholder="Enter National ID" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Staff ID</label>
+                                        {% render_field staff_form.staff_id class="form-control" placeholder="Enter Staff ID" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Job Title</label>
+                                        {% render_field staff_form.staff_job_title class="form-control" placeholder="Enter Job Title" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Job Shift</label>
+                                        {% render_field staff_form.staff_job_shift class="form-control" placeholder="Enter Job Shift" %}
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Gender</label>
+                                        {% render_field user_form.gender class="form-control" placeholder="Select Gender" %}
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Can Add Staff</label>
+                                        {% render_field staff_form.is_hr class="form-control" placeholder="Select Gender" %}
+                                    </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label>Phone Number</label>
-                                {% render_field form.phone class="form-control" placeholder="Enter Phone Number" %}
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-outline-secondary bg-white text-dark">
+                                    Save Details
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary bg-white text-dark">
+                                    Cancel
+                                </button>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label>Email Address</label>
-                                {% render_field form.email class="form-control" placeholder="Enter Email Address" %}
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>National ID</label>
-                                {% render_field form.id_number class="form-control" placeholder="Enter National ID" %}
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Staff ID</label>
-                                {% render_field form.staff_id class="form-control" placeholder="Enter Staff ID" %}
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Gender</label>
-                                {% render_field form.gender class="form-control" placeholder="Select Gender" %}
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Role</label>
-                                {% render_field form.role class="form-control" placeholder="Select Role" %}
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Shift</label>
-                                {% render_field form.shift class="form-control" placeholder="Select Shift" %}
-                            </div>
-
-                            <button type="submit" class="btn btn-outline-secondary bg-white text-dark">
-                                Save Details
-                            </button>
-                            <button type="reset" class="btn btn-outline-secondary bg-white text-dark">
-                                Cancel
-                            </button>
                         </form>
                     </div>
                     <!-- /.panel-body -->

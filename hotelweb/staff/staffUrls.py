@@ -13,7 +13,9 @@ urlpatterns = [
     path('job/titles/remove/<str:job_title_id>', staffViews.deactivate_job_title, name='deactivate_job_title'),
 
     # Job shifts
+    path('job/shifts/add/', staffViews.add_job_shift, name='add_job_shift'),
     path('job/shifts/all/', staffViews.all_job_shifts, name='all_job_shifts'),
 
-    # path('staff/add/', staffViews.add_staff, name='add_staff'),
+    # Staff
+    path('staff/add/', staffViews.add_staff, name='add_staff'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
