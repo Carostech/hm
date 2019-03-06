@@ -116,6 +116,29 @@ def all_job_shifts(request):
 
 
 @login_required
+def update_job_shift(request, job_shift_id):
+    job_shift = JobShift.objects.get(id=job_shift_id)
+
+    if request.method == "POST":
+        form = JobShiftForm(request.POST, instance=job_shift)
+
+        if form.is_valid():
+            job_shift = form.save()
+            messages.success(request, 'Job shift was updated successfully')
+            return redirect('update_job_shift', job_shift_id=job_shift_id)
+
+    else:
+        form = JobShiftForm(instance=job_shift)
+
+    context = {
+        'job_shift': job_shift,
+        'form': form
+    }
+
+    return render(request, 'hotelweb/staff/jobShift/update_job_shift.html', context)
+
+
+@login_required
 def add_staff(request):
     if request.method == "POST":
         user_form = UserForm(request.POST)

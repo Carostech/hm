@@ -39,13 +39,13 @@
                                         <td>{{ shift.shift_end_time }}</td>
                                         <td>{{ shift.created_on|date }}</td>
                                         <td class="center action-icons">
-                                            <a href="">
+                                            <a href="#">
                                                 <i class="fa fa-eye text-info"></i>
                                             </a>
-                                            <a href="">
+                                            <a href="{% url 'update_job_shift' shift.id %}">
                                                 <i class="fa fa-pencil text-success"></i>
                                             </a>
-                                            <a href="">
+                                            <a href="#">
                                                 <i class="fa fa-trash text-danger"></i>
                                             </a>
                                         </td>

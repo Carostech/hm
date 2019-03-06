@@ -52,6 +52,7 @@ class JobTitle(models.Model):
 
 
 class JobShift(models.Model):
+    id = HashidAutoField(primary_key=True)
     job_shift = models.CharField(max_length=100, null=False)
     shift_start_time = models.TimeField(null=False)
     shift_end_time = models.TimeField(null=False)

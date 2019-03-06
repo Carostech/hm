@@ -16,7 +16,6 @@
     <link href="{% static 'hotelweb/vendor/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
 
 
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'hotelweb/vendor/datetime/css/bootstrap-datetimepicker.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 
     <!-- DataTables CSS -->
@@ -300,17 +299,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Staff <span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{% url 'add_staff' %}">Add Staff</a>
-                                </li>
-                                <li>
-                                    <a href="#">All Staff</a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -339,9 +327,7 @@
     <script src="{% static 'hotelweb/vendor/datatables-responsive/dataTables.responsive.js' %}"></script>
 
 
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="{% static 'hotelweb/vendor/datetime/js/moment-with-locales.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'hotelweb/vendor/datetime/js/bootstrap-datetimepicker.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'hotelweb/vendor/datetime/js/script.js' %}"></script>
 
