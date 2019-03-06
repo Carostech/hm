@@ -26,7 +26,6 @@
                          {% endif %}
                         <form role="form" method="POST" action="{% url 'add_staff' %}">
                             {% csrf_token %}
-                            <div class="form-row">
                                   <div class="form-group col-md-6">
                                         <label>First Name</label>
                                         {% render_field user_form.first_name class="form-control" placeholder="Enter First Name" %}
@@ -59,23 +58,29 @@
                                         <label>Job Shift</label>
                                         {% render_field staff_form.staff_job_shift class="form-control" placeholder="Enter Job Shift" %}
                                     </div>
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
                                         <label>Gender</label>
                                         {% render_field user_form.gender class="form-control" placeholder="Select Gender" %}
                                     </div>
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
                                         <label>Can Add Staff</label>
                                         {% render_field staff_form.is_hr class="form-control" placeholder="Select Gender" %}
                                     </div>
-                            </div>
-                            <div class="form-row">
-                                <button type="submit" class="btn btn-outline-secondary bg-white text-dark">
-                                    Save Details
-                                </button>
-                                <button type="reset" class="btn btn-outline-secondary bg-white text-dark">
-                                    Cancel
-                                </button>
-                            </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Password</label>
+                                        {% render_field user_form.password1 class="form-control" placeholder="Enter Password" %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Confirm Password</label>
+                                        {% render_field user_form.password2 class="form-control" placeholder="Enter Password" %}
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Details
+                                    </button>
+                                    <button type="reset" class="btn btn-danger">
+                                        Cancel
+                                    </button>
                         </form>
                     </div>
                     <!-- /.panel-body -->
