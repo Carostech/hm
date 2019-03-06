@@ -65,6 +65,7 @@ class JobShift(models.Model):
 
 
 class Staff(models.Model):
+    id = HashidAutoField(primary_key=True)
     staff_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='staff_user')
     staff_id = models.CharField(null=False, max_length=100)
     staff_job_title = models.ForeignKey(JobTitle, on_delete=models.CASCADE)

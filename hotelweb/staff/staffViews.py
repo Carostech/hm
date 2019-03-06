@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 
-from .staffForms import JobTitleForm, JobShiftForm, UserForm, StaffForm
-from hotelweb.models import JobTitle, JobShift, Staff
+from .staffForms import JobTitleForm, JobShiftForm, UserForm, StaffForm, UserUpdateForm
+from hotelweb.models import JobTitle, JobShift, User, Staff
 
 
 @login_required
@@ -199,3 +199,32 @@ def past_staff(request):
     context = {'staff': staff}
 
     return render(request, 'hotelweb/staff/past_staff.html', context)
+
+
+@login_required
+def update_staff(request, staff_id):
+    staff = Staff.objects.get(id=staff_id)
+    user = User.objects.get(id=staff.staff_user.id)
+
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=user)
+        staff_form = StaffForm(request.POST, instance=staff)
+
+        if user_form.is_valid() and staff_form.is_valid():
+            user = user_form.save()
+            staff = staff_form.save()
+            messages.success(request, 'Staff was updated successfully')
+
+            return redirect('update_staff', staff_id=staff_id)
+
+    else:
+        user_form = UserUpdateForm(instance=user)
+        staff_form = StaffForm(instance=staff)
+
+    context = {
+        'user_form': user_form,
+        'staff_form': staff_form,
+        'staff': staff
+    }
+
+    return render(request, 'hotelweb/staff/update_staff.html', context)

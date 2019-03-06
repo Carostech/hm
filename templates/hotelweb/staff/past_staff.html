@@ -31,7 +31,6 @@
                                     <th>Job Title</th>
                                     <th>Job Shift</th>
                                     <th>Gender</th>
-                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -45,17 +44,6 @@
                                         <td>{{ staff.staff_job_title }}</td>
                                         <td>{{ staff.staff_job_shift }}</td>
                                         <td>{{ staff.staff_user.gender }}</td>
-                                        <td class="center action-icons">
-                                            <a href="#">
-                                                <i class="fa fa-eye text-info"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-pencil text-success"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="fa fa-trash text-danger"></i>
-                                            </a>
-                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

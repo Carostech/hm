@@ -22,6 +22,12 @@ class UserForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'email', 'phone', 'id_number', 'gender', 'password1', 'password2')
 
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'phone', 'id_number', 'gender')
+
+
 class StaffForm(forms.ModelForm):
   class Meta:
     model = Staff

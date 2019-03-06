@@ -22,4 +22,5 @@ urlpatterns = [
     path('staff/add/', staffViews.add_staff, name='add_staff'),
     path('staff/current/', staffViews.current_staff, name='current_staff'),
     path('staff/past/', staffViews.past_staff, name='past_staff'),
+    path('staff/update/<str:staff_id>', staffViews.update_staff, name='update_staff'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
