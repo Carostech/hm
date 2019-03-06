@@ -139,6 +139,16 @@ def update_job_shift(request, job_shift_id):
 
 
 @login_required
+def deactivate_job_shift(request, job_shift_id):
+    job_shift = JobShift.objects.get(id=job_shift_id)
+    job_shift.job_shift_status = 0
+    job_shift.save(update_fields=['job_shift_status'])
+    messages.add_message(request, messages.SUCCESS, 'Job shift removed successfully')
+    return redirect('all_job_shifts')
+
+
+
+@login_required
 def add_staff(request):
     if request.method == "POST":
         user_form = UserForm(request.POST)
