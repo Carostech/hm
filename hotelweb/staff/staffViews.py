@@ -147,7 +147,6 @@ def deactivate_job_shift(request, job_shift_id):
     return redirect('all_job_shifts')
 
 
-
 @login_required
 def add_staff(request):
     if request.method == "POST":
@@ -164,6 +163,7 @@ def add_staff(request):
             staff = staff_form.save(commit=False)
             staff.staff_user = user
             staff.staff_created_by = request.user
+            staff.save()
 
             # Success message
             messages.success(request, 'The staff has been successfully created')
@@ -181,21 +181,21 @@ def add_staff(request):
     return render(request, 'hotelweb/staff/add_staff.html', context)
 
 
+@login_required
+def current_staff(request):
+    staff = Staff.objects.select_related().filter(staff_user__status=1)
+
+    context = {
+        'staff': staff
+    }
+
+    return render(request, 'hotelweb/staff/current_staff.html', context)
 
 
-#def add_staff(request):
- #   if request.method == "POST":
-  #      form = StaffForm(request.POST)
-   #     if form.is_valid():
-    #        staff = form.save(commit=False)
-     #       staff.created_on = timezone.now()
-      #      staff.save()
-       #     messages.success(request, 'Staff Created Successfully')
-        #    return redirect('add_staff')
-    #else:
-     #   form = StaffForm()
+@login_required
+def past_staff(request):
+    staff = Staff.objects.select_related().filter(staff_user__status=0)
 
-    #context = {
-     #   'form': form
-    #}
-    #return render(request, 'hotelweb/staff/add_staff.html', context)
+    context = {'staff': staff}
+
+    return render(request, 'hotelweb/staff/past_staff.html', context)
