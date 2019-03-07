@@ -1,6 +1,6 @@
 from django import forms
 
-from hotelweb.models import FacilityType, Facility, RoomType
+from hotelweb.models import FacilityType, Facility, RoomType, Room
 
 
 class FacilityTypeForm(forms.ModelForm):
@@ -19,3 +19,9 @@ class RoomTypeForm(forms.ModelForm):
     class Meta:
         model = RoomType
         fields = ('room_type_name',)
+
+
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = ('room_type', 'room_floor', 'room_number')

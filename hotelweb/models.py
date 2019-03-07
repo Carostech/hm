@@ -109,14 +109,17 @@ class RoomType(models.Model):
     room_type_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     room_type_created_on = models.DateTimeField(null=False, default=timezone.now)
 
+    def __str__(self):
+        return self.room_type_name
+
 
 class Room(models.Model):
     id = HashidAutoField(primary_key=True)
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
-    room_floor = models.IntegerField(null=False, default=1)
-    room_number = models.CharField(max_length=50, null=False, default='something')
+    room_floor = models.IntegerField(null=False)
+    room_number = models.CharField(max_length=50, null=False)
     room_created_on = models.DateTimeField(default=timezone.now, null=False)
-    room_created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    room_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     room_status = models.IntegerField(null=False, default=1)
 
 

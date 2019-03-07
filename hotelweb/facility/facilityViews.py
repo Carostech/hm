@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .facilityForms import FacilityTypeForm, FacilityForm, RoomTypeForm
-from hotelweb.models import FacilityType, Facility, RoomType
+from .facilityForms import FacilityTypeForm, FacilityForm, RoomTypeForm, RoomForm
+from hotelweb.models import FacilityType, Facility, RoomType, Room
 
 
 @login_required
@@ -199,3 +199,69 @@ def deactivate_room_type(request, room_type_id):
     room_type.save(update_fields=['room_type_status'])
     messages.add_message(request, messages.SUCCESS, 'The room type was removed successfully')
     return redirect('all_room_types')
+
+
+@login_required
+def add_room(request):
+    if request.method == "POST":
+        form = RoomForm(request.POST)
+
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.room_created_by = request.user
+            room.save()
+            messages.success(request, 'The room was added successfully')
+            return redirect('add_room')
+
+    else:
+        form = RoomForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'hotelweb/facility/room/add_room.html', context)
+
+
+@login_required
+def all_rooms(request):
+    rooms = Room.objects.filter(room_status=1)
+
+    context = {
+        'rooms': rooms
+    }
+
+    return render(request, 'hotelweb/facility/room/all_rooms.html', context)
+
+
+@login_required
+def update_room(request, room_id):
+    room = Room.objects.get(id=room_id)
+
+    if request.method == "POST":
+        form = RoomForm(request.POST, instance=room)
+
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.save()
+            messages.success(request, 'The room was updated successfully')
+            return redirect('update_room', room_id=room_id)
+
+    else:
+        form = RoomForm(instance=room)
+
+    context = {
+        'form': form,
+        'room': room
+    }
+
+    return render(request, 'hotelweb/facility/room/update_room.html', context)
+
+
+@login_required
+def deactivate_room(request, room_id):
+    room = Room.objects.get(id=room_id)
+    room.room_status = 0
+    room.save(update_fields=['room_status'])
+    messages.add_message(request, messages.SUCCESS, 'The room  was removed successfully')
+    return redirect('all_rooms')
