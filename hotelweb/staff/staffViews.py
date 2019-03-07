@@ -228,3 +228,19 @@ def update_staff(request, staff_id):
     }
 
     return render(request, 'hotelweb/staff/update_staff.html', context)
+
+
+@login_required
+def deactivate_staff(request, staff_id):
+    # Update in user table
+    user = User.objects.get(id=staff_id)
+    user.status = 0
+    user.save(update_fields=['status'])
+
+    # Update in staff table
+    staff = Staff.objects.get(staff_user=staff_id)
+    staff.staff_end_date = timezone.now()
+    staff.save(update_fields=['staff_end_date'])
+
+    messages.add_message(request, messages.SUCCESS, 'Staff was removed successfully')
+    return redirect('current_staff')

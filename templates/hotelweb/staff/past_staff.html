@@ -31,6 +31,7 @@
                                     <th>Job Title</th>
                                     <th>Job Shift</th>
                                     <th>Gender</th>
+                                    <th>Duration</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -44,6 +45,7 @@
                                         <td>{{ staff.staff_job_title }}</td>
                                         <td>{{ staff.staff_job_shift }}</td>
                                         <td>{{ staff.staff_user.gender }}</td>
+                                        <td>{{ staff.staff_user.created_on|date }} - {{ staff.staff_end_date|date }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
