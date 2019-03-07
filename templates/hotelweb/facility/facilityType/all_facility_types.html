@@ -1,0 +1,59 @@
+{% extends 'hotelweb/base/main_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">All Facility Types</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    {% if messages %}
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        </div>
+                     {% endif %}
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table width="100%" class="table dataTable table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Facility Type</th>
+                                    <th>Created By</th>
+                                    <th>Created On</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for facility_type in facility_types %}
+                                    <tr class="odd gradeX">
+                                        <td>{{ facility_type.facility_type_name }}</td>
+                                        <td>{{ facility_type.facility_type_created_by }}</td>
+                                        <td>{{ facility_type.facility_type_created_on|date }}</td>
+                                        <td class="center action-icons">
+                                            <a href="{% url 'update_facility_type' facility_type.id %}">
+                                                <i class="fa fa-pencil text-success"></i>
+                                            </a>
+                                            <a href="{% url 'deactivate_facility_type' facility_type.id %}">
+                                                <i class="fa fa-trash text-danger"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock %}

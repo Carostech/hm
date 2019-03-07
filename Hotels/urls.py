@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('hotelmngt.urls')),
     path('', include('hotelweb.authentication.authenticationUrls')),
     path('', include('hotelweb.staff.staffUrls')),
+    path('', include('hotelweb.facility.facilityUrls')),
 ]

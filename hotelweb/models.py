@@ -81,6 +81,7 @@ class Client(models.Model):
 
 
 class FacilityType(models.Model):
+    id = HashidAutoField(primary_key=True)
     facility_type_name = models.CharField(max_length=100, null=False)
     facility_type_status = models.IntegerField(null=False,default=1)
     facility_type_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -91,13 +92,13 @@ class FacilityType(models.Model):
 
 
 class Facility(models.Model):
-    facility_type = models.OneToOneField(FacilityType, on_delete=models.CASCADE)
-    facility_floor = models.IntegerField(null=False)
-    facility_number = models.CharField(max_length=50, null=False)
-    facility_cleaning_status = models.IntegerField(null=False, default=1)
-    facility_created_on = models.DateTimeField(default=timezone.now, null=False)
-    facility_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    facility_status = models.IntegerField(null=False, default=1)
+    facility_type = models.ForeignKey(FacilityType, on_delete=models.CASCADE)
+    facility_name = models.CharField(max_length=50, null=False, default='something')
+    facility_location = models.CharField(max_length=50, null=False, default='something')
+    facility_capacity = models.CharField(max_length=50, null=False, default='something')
+    status = models.IntegerField(null=False, default=1)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    created_on = models.DateTimeField(default=timezone.now)
 
 
 class RoomType(models.Model):
@@ -108,17 +109,12 @@ class RoomType(models.Model):
 
 
 class Room(models.Model):
-    room_facility = models.OneToOneField(Facility, on_delete=models.CASCADE)
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
-
-
-class OtherFacility(models.Model):
-    facility_name = models.CharField(max_length=50, null=False)
-    facility_location = models.CharField(max_length=50, null=False)
-    facility_capacity = models.CharField(max_length=50, null=False)
-
-    def __str__(self):
-        return self.facility_name
+    room_floor = models.IntegerField(null=False, default=1)
+    room_number = models.CharField(max_length=50, null=False, default='something')
+    room_created_on = models.DateTimeField(default=timezone.now, null=False)
+    room_created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    room_status = models.IntegerField(null=False, default=1)
 
 
 class Cleaning(models.Model):
