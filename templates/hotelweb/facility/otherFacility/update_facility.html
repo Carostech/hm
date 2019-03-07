@@ -1,0 +1,65 @@
+{% extends 'hotelweb/base/main_base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Update Facility</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-file fa-fw"></i> Fill the form
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <form role="form" method="POST" action="{% url 'update_facility' facility.id %}" class="col-md-8 ">
+                            {% csrf_token %}
+                            {% if messages %}
+                                <div class="alert alert-success alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                </div>
+                             {% endif %}
+                            <div class="form-group col-md-12">
+                                <label>Facility Type</label>
+                                {% render_field form.facility_type class="form-control" placeholder="Enter Facility Type" %}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Facility Name</label>
+                                {% render_field form.facility_name class="form-control" placeholder="Enter Facility Name" %}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Facility Location</label>
+                                {% render_field form.facility_location class="form-control" placeholder="Enter Facility Location" %}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Facility Capacity</label>
+                                {% render_field form.facility_capacity class="form-control" placeholder="Enter Facility Capacity" %}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button type="submit" class="btn btn-primary">
+                                    Update Details
+                                </button>
+                                <button type="reset" class="btn btn-danger">
+                                    Cancel
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock %}

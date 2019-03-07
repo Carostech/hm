@@ -92,12 +92,13 @@ class FacilityType(models.Model):
 
 
 class Facility(models.Model):
+    id = HashidAutoField(primary_key=True)
     facility_type = models.ForeignKey(FacilityType, on_delete=models.CASCADE)
-    facility_name = models.CharField(max_length=50, null=False, default='something')
-    facility_location = models.CharField(max_length=50, null=False, default='something')
-    facility_capacity = models.CharField(max_length=50, null=False, default='something')
+    facility_name = models.CharField(max_length=50, null=False)
+    facility_location = models.CharField(max_length=50, null=False)
+    facility_capacity = models.IntegerField(max_length=50, null=False)
     status = models.IntegerField(null=False, default=1)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(default=timezone.now)
 
 
