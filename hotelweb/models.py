@@ -103,6 +103,7 @@ class Facility(models.Model):
 
 
 class RoomType(models.Model):
+    id = HashidAutoField(primary_key=True)
     room_type_name = models.CharField(null=False, max_length=100)
     room_type_status = models.IntegerField(null=False, default=1)
     room_type_created_by = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -110,6 +111,7 @@ class RoomType(models.Model):
 
 
 class Room(models.Model):
+    id = HashidAutoField(primary_key=True)
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
     room_floor = models.IntegerField(null=False, default=1)
     room_number = models.CharField(max_length=50, null=False, default='something')

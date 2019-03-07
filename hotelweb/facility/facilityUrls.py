@@ -15,5 +15,11 @@ urlpatterns = [
     path('facility/add/', facilityViews.add_facility, name='add_facility'),
     path('facility/all/', facilityViews.all_facilities, name='all_facilities'),
     path('facility/update/<str:facility_id>/', facilityViews.update_facility, name='update_facility'),
-    path('facility/deactivate/<str:facility_id>/', facilityViews.deactivate_facility, name='deactivate_facility')
+    path('facility/deactivate/<str:facility_id>/', facilityViews.deactivate_facility, name='deactivate_facility'),
+
+    # Rooms
+    path('room/add/', facilityViews.add_room_type, name='add_room_type'),
+    path('room/all/', facilityViews.all_room_types, name='all_room_types'),
+    path('room/update/<str:room_type_id>/', facilityViews.update_room_type, name='update_room_type'),
+    path('room/deactivate/<str:room_type_id>/', facilityViews.deactivate_room_type, name='deactivate_room_type'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
